@@ -11,25 +11,31 @@ public class LoginOptions {
 	
 	public static void createNewUser() {
 		User newUser = new User();
-		User.UserId.add(newUser.getUserId());
-		Map<String, String>mymap = new HashMap<String, String>();
-		mymap.put("userName", newUser.getUserName());
-		mymap.put("loginId", newUser.getLoginId());
-		mymap.put("password", newUser.getPassword());
+		Map<String, String>parameters = new HashMap<String, String>();
+		parameters.put("userName", newUser.getUserName());
+		parameters.put("loginId", newUser.getLoginId());
+		parameters.put("password", newUser.getPassword());
 		
-		JSONObject response = HttpConnections.sendRequestToServer("Registration", mymap);
-		newUser.setUserId(Integer.parseInt(response.get("registeredStatus").toString()));
+		JSONObject response = HttpConnections.sendRequestToServer("Registration", parameters);
+		System.out.println(response.toString());
 	}
 	
-	public static void validateUserLogin() {
+	public static String validateUserLogin() {
 		String loginId, password;
+		
+		System.out.println("loginId: ");
 		loginId = IO.inputSource.nextLine();
+		
+		System.out.println("password: ");
 		password = IO.inputSource.nextLine();
-		Map<String, String>mymap = new HashMap<String, String>();
-		mymap.put("loginId", loginId);
-		mymap.put("password", password);
-		JSONObject response = HttpConnections.sendRequestToServer("Login", mymap);
-		System.out.println(response.get("loggedInStatus"));			
+		
+		Map<String, String>parameters = new HashMap<String, String>();
+		parameters.put("loginId", loginId);
+		parameters.put("password", password);
+		JSONObject response = HttpConnections.sendRequestToServer("Login", parameters);
+		if(response.get("loggedInStatus").equals("true"))
+			return loginId;
+		return null;
 	}
 
 }

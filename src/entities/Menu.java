@@ -1,25 +1,18 @@
 package entities;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.simple.JSONObject;
+
+import tools.HttpConnections;
 
 public class Menu {
-	private HashSet<Integer> menu = null;
-	
-	public Menu() {
-		menu = new HashSet<Integer>();
-	}
-	
-	public HashSet<Integer> getMenu() {
-		return menu;
-	}
-	
-	public void addItem(Item item) {
-		menu.add(item.getItemId());
-	}
-	
-	public static void displayMenu() {
-		// Print all the item details from the database, using the itemId 
-		/*for(int item : menu) 
-			System.out.println(item);*/
+		
+	public static void displayMenu(String loginId) {
+		Map<String, String>parameters = new HashMap<String, String>();
+		parameters.put("loginId", loginId);
+		JSONObject response = HttpConnections.sendRequestToServer("Items", parameters);
+		System.out.println(response.toString());
 	}
 }

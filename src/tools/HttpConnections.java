@@ -23,6 +23,7 @@ public class HttpConnections {
 	public static JSONObject sendRequestToServer(String type, Map<String, String>parameters) {
 		
 		String urlString = "http://10.54.3.47:8080/MagniFoods-jsp/" + type + "?" + parametersToString(parameters);
+		//System.out.println(urlString);
 		StringBuffer response = new StringBuffer();
 		JSONObject jsonResponse = null;
 		try {
@@ -30,7 +31,7 @@ public class HttpConnections {
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 			con.setRequestMethod("GET");
 			int responseCode = con.getResponseCode();
-			System.out.println(responseCode);
+			//System.out.println(responseCode);
 			if (responseCode == HttpURLConnection.HTTP_OK) { // success
 				BufferedReader in = new BufferedReader(new InputStreamReader(
 						con.getInputStream()));
@@ -47,7 +48,7 @@ public class HttpConnections {
 			e.printStackTrace();
 		}
 		try {
-			//System.out.println(response.toString());
+			System.out.println(response.toString());
 			jsonResponse = (JSONObject) new JSONParser().parse(response.toString());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

@@ -1,41 +1,30 @@
 package actions;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
-import entities.Item;
+import org.json.simple.JSONObject;
+
+import tools.HttpConnections;
+import tools.IO;
 
 public class Order {
 	
-	private int orderId;
-	private int userId;
-	private HashSet<Integer> orderedItems = null;
-	
-	public Order(int userId) {	
-		this.userId = userId;
-		orderedItems = new HashSet<Integer>();
-	}
-	
-	// Getters and Setters
-	public int getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public HashSet<Integer> getOrderedItems() {
-		return orderedItems;
-	}
-	
-	
-	// Individual Functions
-	public void addItem(Item item) {	
-		orderedItems.add(item.getItemId());
-	}
-	
-	public void removeItem(Item item) {
-		orderedItems.remove(item.getItemId());
+	// Individual Functions	
+	public static void getOrders(String loginId) {
+		
+		System.out.println("Order: ");
+		String currentOrder = IO.inputSource.nextLine();
+		
+		System.out.println("Quntatiy: ");
+		String quantity = IO.inputSource.nextLine();
+		
+		Map<String, String>parameters = new HashMap<String, String>();
+		parameters.put("loginId", loginId);
+		parameters.put("itemId", currentOrder);
+		parameters.put("quantity", quantity);
+		
+		JSONObject response = HttpConnections.sendRequestToServer("Order", parameters);
+		System.out.println(response.toString());
 	}
 }
