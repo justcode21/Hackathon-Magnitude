@@ -1,7 +1,5 @@
 package user;
 
-import java.util.HashSet;
-
 import entities.Item;
 
 public class User {

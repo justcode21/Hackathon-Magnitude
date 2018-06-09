@@ -1,20 +1,19 @@
 package entities;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class Menu {
-	private List<Item> menu = null;
+	private HashSet<Integer> menu = null;
 	
 	public Menu() {
-		menu = new ArrayList<Item>();
+		menu = new HashSet<Integer>();
 	}
 	
-	public List<Item> getMenu() {
+	public HashSet<Integer> getMenu() {
 		return menu;
 	}
 	
 	public void addItem(Item item) {
-		
+		menu.add(item.getItemId());
 	}
 }

@@ -8,11 +8,11 @@ public class Order {
 	
 	private int orderId;
 	private int userId;
-	private HashSet<Item> orderedItems = null;
+	private HashSet<Integer> orderedItems = null;
 	
 	public Order(int userId) {	
 		this.userId = userId;
-		orderedItems = new HashSet<Item>();
+		orderedItems = new HashSet<Integer>();
 	}
 	
 	// Getters and Setters
@@ -25,7 +25,7 @@ public class Order {
 	public int getUserId() {
 		return userId;
 	}
-	public HashSet<Item> getOrderedItems() {
+	public HashSet<Integer> getOrderedItems() {
 		return orderedItems;
 	}
 	
@@ -33,10 +33,10 @@ public class Order {
 	// Individual Functions
 	public void addItem(Item item) {	
 		item.setOrderId(orderId);
-		orderedItems.add(item);
+		orderedItems.add(item.getItemId());
 	}
 	
 	public void removeItem(Item item) {
-		orderedItems.remove(item);
+		orderedItems.remove(item.getItemId());
 	}
 }
