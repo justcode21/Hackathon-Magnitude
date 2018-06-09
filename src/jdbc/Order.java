@@ -49,17 +49,20 @@ public class Order extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();
 		String sql = "insert into magnifood.order(OrderId,UserId,ItemId,Quantity) values(?,?,?,?)";
-		String UserId = request.getParameter("userId");
+		String UserId = request.getParameter("loginId");
 		//String OrderId = request.getParameter("orderId");
 		String[] itemIds = request.getParameter("itemId").split(",");
 		String[] quantity = request.getParameter("quantity").split(",");
+		
+		System.out.println(request.getParameter("itemId"));
+		System.out.println(request.getParameter("quantity"));
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/magnifood", "root", "yash1234");
 			PreparedStatement ps = conn.prepareStatement(sql);
-			
-			ps.setString(1, getOrderId());
+			String generatedOrderID = getOrderId();
+			ps.setString(1, generatedOrderID);
 			ps.setString(2, UserId);
 			int n = itemIds.length;
 			int m = quantity.length;
@@ -68,11 +71,19 @@ public class Order extends HttpServlet {
 				for(int i=0;i<n;i++) {
 					ps.setString(3, itemIds[i]);
 					ps.setString(4, quantity[i]);
+					System.out.println(ps.toString());
 					ps.executeUpdate();
 				}
+				JSONObject jo = new JSONObject();
+				jo.put("OrderID", generatedOrderID);
+				pw.println(jo);
+				pw.flush();
 			}
 			else {
-				
+				JSONObject jo = new JSONObject();
+				jo.put("OrderID", "-1");
+				pw.println(jo);
+				pw.flush();
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
