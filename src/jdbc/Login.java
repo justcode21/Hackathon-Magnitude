@@ -47,15 +47,17 @@ public class Login extends HttpServlet {
 			String loginId = request.getParameter("loginId");
 			String password = request.getParameter("password");
 			String sql = "select * from magnifood.user where loginId = ? and password = ?";
+			String sql2 = "select cafeuserid from magnifood.cafe where cafeuserid = ?";
+			String sql3 = "select cafeteriauser from magnifood.cafe where cafeteriauser = ?";
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/magnifood", "root", "yash1234");
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, loginId);
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
-			String dbUserName = null;
-			String dbLoginId = null;
-			String dbPassword = null;
+			String dbUserName = "";
+			String dbLoginId = "";
+			String dbPassword = "";
 			while(rs.next()) {
 				 dbUserName = rs.getString("userName");
 				 dbLoginId = rs.getString("loginId");
@@ -63,6 +65,34 @@ public class Login extends HttpServlet {
 			}
 			if(loginId.equals(dbLoginId) && password.equals(dbPassword)) {
 				jo.put("loggedInStatus", "true");
+				boolean flag = false;
+				PreparedStatement ps2 = conn.prepareStatement(sql2);
+				ps2.setString(1, dbLoginId);
+				ResultSet rs2 = ps2.executeQuery();
+				String cafeuserid = "";
+				while(rs2.next()) {
+					cafeuserid = rs2.getString(1);
+				}
+				if(cafeuserid.equals(dbLoginId)) {
+					jo.put("value", "1");
+					flag = true;
+				}
+				if(!flag) {
+					PreparedStatement ps3 = conn.prepareStatement(sql3);
+					ps3.setString(1, dbLoginId);
+					ResultSet rs3 = ps3.executeQuery();
+					String cafeteriauser = "";
+					while(rs3.next()) {
+						cafeteriauser = rs3.getString(1);
+					}
+					if(cafeteriauser.equals(dbLoginId)) {
+						jo.put("value", "2");
+						flag = true;
+					}
+				}
+				if(!flag) {
+					jo.put("value", "0");
+				}
 			}else {
 				jo.put("loggedInStatus", "false");
 			}
