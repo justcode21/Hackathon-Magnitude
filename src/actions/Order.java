@@ -1,4 +1,4 @@
-package user;
+package actions;
 
 import java.util.HashSet;
 

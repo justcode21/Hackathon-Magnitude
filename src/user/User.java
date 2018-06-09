@@ -1,5 +1,6 @@
 package user;
 
+import actions.Order;
 import entities.Item;
 
 public class User {
