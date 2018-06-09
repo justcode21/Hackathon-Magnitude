@@ -62,9 +62,9 @@ public class Login extends HttpServlet {
 				 dbPassword = rs.getString("password");
 			}
 			if(loginId.equals(dbLoginId) && password.equals(dbPassword)) {
-				jo.put("loggedInStatus", true);
+				jo.put("loggedInStatus", "true");
 			}else {
-				jo.put("loggedInStatus", false);
+				jo.put("loggedInStatus", "false");
 			}
 			PrintWriter out = response.getWriter();
 			out.print(jo);

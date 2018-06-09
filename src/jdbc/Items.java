@@ -50,10 +50,12 @@ public class Items extends HttpServlet {
 			
 			PreparedStatement pst = conn.prepareStatement(sqlValid);
 			pst.setString(1, loginId);
+			System.out.println(pst.toString());
 			JSONObject jo = new JSONObject();
 			ResultSet rst = pst.executeQuery();
 			String password = null;
 			while(rst.next()) {
+				System.out.println("here");
 				password = rst.getString(5);
 			}
 			
