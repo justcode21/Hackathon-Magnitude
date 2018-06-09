@@ -16,4 +16,10 @@ public class Menu {
 	public void addItem(Item item) {
 		menu.add(item.getItemId());
 	}
+	
+	public static void displayMenu() {
+		// Print all the item details from the database, using the itemId 
+		/*for(int item : menu) 
+			System.out.println(item);*/
+	}
 }

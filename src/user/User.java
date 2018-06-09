@@ -2,6 +2,7 @@ package user;
 
 import actions.Order;
 import entities.Item;
+import entities.Menu;
 
 public class User {
 	
@@ -64,5 +65,9 @@ public class User {
 	
 	public void deleteOrder(Item item){
 		userOrders.removeItem(item);
+	}
+	
+	public void viewMenuItems() {
+		Menu.displayMenu();
 	}
 }
