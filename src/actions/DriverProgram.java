@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
 
+import entities.Cafeteria;
 import entities.Menu;
 import jdk.internal.org.xml.sax.InputSource;
 import tools.LoginOptions;
@@ -37,9 +38,9 @@ public class DriverProgram {
 			if(choice == 1)
 				Menu.displayMenu("Add", currentLoginId);
 			else if(choice == 2)
-				Order.getOrders("Edit");
+				Cafeteria.updateCafe(currentLoginId);
 			else if(choice == 3)
-				Order.printAllOrders("Delete", currentLoginId, 0);
+				Cafeteria.removeCafe(currentLoginId);
 			else if(choice == 4)
 				Order.printAllOrders("ViewCafe", currentLoginId, 0);
 			else if(choice == 5)
@@ -56,11 +57,11 @@ public class DriverProgram {
 			printScreen("CafeUserOptions");
 			int choice = inputSource.nextInt();
 			if(choice == 1)
-				Menu.addItem(currentLoginId);
+				Menu.addItems(currentLoginId);
 			else if(choice == 2)
-				Order.getOrders("Edit");
+				Menu.updateMenu(currentLoginId);
 			else if(choice == 3)
-				Order.printAllOrders("Delete", currentLoginId, 0);
+				Menu.removeItem(currentLoginId);
 			else if(choice == 4)
 				Order.printAllOrders("ViewItems", currentLoginId, 0);
 			else break;
