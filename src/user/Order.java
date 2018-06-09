@@ -32,7 +32,6 @@ public class Order {
 	
 	// Individual Functions
 	public void addItem(Item item) {	
-		item.setOrderId(orderId);
 		orderedItems.add(item.getItemId());
 	}
 	

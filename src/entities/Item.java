@@ -3,13 +3,12 @@ package entities;
 public class Item {
 	
 	private int itemId;
-	private int orderId;
 	private int itemName;
 	private double itemCost;
 
 	public Item() {
 		
-		
+		itemId = -1;
 	}
 	
 	// Getters and Setters
@@ -18,12 +17,6 @@ public class Item {
 	}
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
-	}
-	public int getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
 	}
 	public int getItemName() {
 		return itemName;
