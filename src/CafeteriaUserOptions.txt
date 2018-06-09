@@ -2,5 +2,5 @@
 2. Edit Cafe
 3. Delete Cafe
 4. View a Cafe 
-5. View All Orders Per Cafe
-6. View All Orders in All Cafe
+5. View All Orders for a Cafe
+6. View All Orders in All Cafes

@@ -19,10 +19,14 @@ public class Order {
 		System.out.println("Quntatiy: ");
 		String quantity = IO.inputSource.nextLine();
 		
+		System.out.println("CafeName: ");
+		String cafeName = IO.inputSource.nextLine();
+		
 		Map<String, String>parameters = new HashMap<String, String>();
 		parameters.put("loginId", loginId);
 		parameters.put("itemId", currentOrder);
 		parameters.put("quantity", quantity);
+		parameters.put("cafeName", cafeName);
 		
 		JSONObject response = HttpConnections.sendRequestToServer("Order", parameters);
 		System.out.println(response.toString());

@@ -1,2 +1,2 @@
 1. Display Menu
-2. Display your orders
+2. Order Items
