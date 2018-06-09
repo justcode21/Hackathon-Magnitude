@@ -33,3 +33,13 @@ The entire problem statement(all 3 phases) does NOT involve building a UI. You w
 3. When an order comes into a café, they need to update the inventory in the store house
 4. Café should be able to automatically mark items as out of stock as soon as the ingredients to make them is not available
 ```
+
+#### Phase - 4 Requirements
+```
+1. The store house is now shared between all the cafés in the cafeteria. i.e. 1 store house is present in the cafeteria that is used by   all cafés
+2. Ingredients in the store house can be added by the Cafeteria User at any time of the day.
+      When ingredients are added into the Store House, all the Cafés should mark the items as in-stock wherever applicable. E.g. Cafe1         and Cafe2 have marked Chicken Egg Wrap as out of stock because eggs are not available in the Store House. As soon as the                 cafeteria user adds eggs into the Store House both Cafe1 and Cafe2 should be able to update the menu and mark Chicken Egg Wrap in       stock. Do note that Cafe1 might have other items that are out of stock, and they should remain so until all ingredients required         to prepare the item is not available in the Store House.
+3. Allow for some random time ( < 1 minute or so), for the order to get processed and delivered. Order will now have following statuses    - Placed (~10% of time), Processing (~70% of time), Out for Delivery (~30% of time) and Delivered(finally). Allow for cancellation of    order when in Placed state.
+4. Notifications: Implement notification of order status change to customers. Allow for notification of order placement to Cafe owners.    Allow for ingredient out of stock notification to Cafeteria owner.
+5. Write the test cases on the lines of attached sheet
+```
