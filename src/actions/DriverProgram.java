@@ -36,7 +36,7 @@ public class DriverProgram {
 			printScreen("CafeteriaUserOptions");
 			int choice = inputSource.nextInt();
 			if(choice == 1)
-				Menu.displayMenu("Add", currentLoginId);
+				Cafeteria.addCafe(currentLoginId);
 			else if(choice == 2)
 				Cafeteria.updateCafe(currentLoginId);
 			else if(choice == 3)

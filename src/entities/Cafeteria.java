@@ -38,4 +38,25 @@ public class Cafeteria {
 		System.out.println(response.toString());
 	}
 	
+	public static void addCafe(String loginId) {
+		Map<String, String>parameters = new HashMap<String, String>();
+		
+		System.out.println("CafeName: ");
+		String cafeName = IO.inputSource.nextLine();
+		
+		System.out.println("ItemNames: ");
+		String itemNames = IO.inputSource.nextLine();
+		
+		System.out.println("ItemCosts: ");
+		String itemCosts = IO.inputSource.nextLine();
+		
+		parameters.put("loginId", loginId);
+		parameters.put("itemNames", itemNames);
+		parameters.put("itemCosts", itemCosts);
+		
+		JSONObject response = HttpConnections.sendRequestToServer("AddCafe", parameters);
+		System.out.println(response.toString());
+		
+	}
+	
 }
