@@ -1,26 +1,35 @@
 package user;
 
+import java.util.Scanner;
+
+import org.json.simple.JSONObject;
+
 import actions.Order;
 import entities.Item;
 import entities.Menu;
+import tools.HttpConnections;
+import tools.IO;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 
 public class User {
 	
 	private int userId;
 	private String userName;
-	private String userCompany;
 	private String loginId;
 	private String password;
 	
 	private boolean isLoggedIn;
 	
 	private Order userOrders = null;
+
+	public static HashSet<Integer>UserId = new HashSet<Integer>();
 	
-	public User() {
-		userName = null;
-		userCompany = null;
-		loginId = null;
-		password = null;
+	public User(){
+		getDetails();
 		isLoggedIn = false;
 		userOrders = new Order(userId);
 	}
@@ -38,12 +47,6 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserCompany() {
-		return userCompany;
-	}
-	public void setUserCompany(String userCompany) {
-		this.userCompany = userCompany;
-	}
 	public String getLoginId() {
 		return loginId;
 	}
@@ -58,7 +61,23 @@ public class User {
 	}
 	
 	
-	// Individual Functions
+	// Individual Functions	
+	public void getDetails(){
+		System.out.println("Name: ");
+		userName = IO.inputSource.nextLine();
+		
+		System.out.println("LoginId: ");
+		loginId = IO.inputSource.nextLine();
+		
+		System.out.println("Password: ");
+		password = IO.inputSource.nextLine();
+	
+	}
+	
+	public void loginUser(){
+		
+	}
+	
 	public void addOrder(Item item) {
 		userOrders.addItem(item);
 	}
