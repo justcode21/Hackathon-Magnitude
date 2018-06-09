@@ -44,15 +44,12 @@ public class Cafeteria {
 		System.out.println("CafeName: ");
 		String cafeName = IO.inputSource.nextLine();
 		
-		System.out.println("ItemNames: ");
-		String itemNames = IO.inputSource.nextLine();
-		
-		System.out.println("ItemCosts: ");
-		String itemCosts = IO.inputSource.nextLine();
+		System.out.println("CafeManagerName: ");
+		String cafeUserName = IO.inputSource.nextLine();
 		
 		parameters.put("loginId", loginId);
-		parameters.put("itemNames", itemNames);
-		parameters.put("itemCosts", itemCosts);
+		parameters.put("cafeName", cafeName);
+		parameters.put("cafeUserName", cafeUserName);
 		
 		JSONObject response = HttpConnections.sendRequestToServer("AddCafe", parameters);
 		System.out.println(response.toString());
