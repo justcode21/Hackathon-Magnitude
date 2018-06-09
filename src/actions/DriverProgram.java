@@ -11,6 +11,12 @@ import tools.LoginOptions;
 public class DriverProgram {
 	
 	private static Scanner inputSource = new Scanner(System.in);
+	public static int userFlag = -1;
+	
+	private static void resetUserFlag() {
+		userFlag = -1;
+	}
+	
 	public static void printScreen(String fileName) {
 		String documentToRead = "src/" + fileName + ".txt";
 		try (BufferedReader br = new BufferedReader(new FileReader(documentToRead))) {
@@ -24,21 +30,73 @@ public class DriverProgram {
 		}
 	}
 	
-	public static void regesterUser() {
-		LoginOptions.createNewUser();
+	public static void cafeteriaUserLogin(String currentLoginId) {
+		while(true) {
+			printScreen("CafeteriaUserOptions");
+			int choice = inputSource.nextInt();
+			if(choice == 1)
+				Menu.displayMenu("Add", currentLoginId);
+			else if(choice == 2)
+				Order.getOrders("Edit");
+			else if(choice == 3)
+				Order.printAllOrders("Delete", currentLoginId, 0);
+			else if(choice == 4)
+				Order.printAllOrders("ViewCafe", currentLoginId, 0);
+			else if(choice == 5)
+				Order.printAllOrders("ViewOrders", currentLoginId, 1);
+			else if(choice == 6)
+				Order.printAllOrders("ViewOrders", currentLoginId, 0);
+			else break;
+		}
+		resetUserFlag();
+	}
+	
+	public static void cafeUserLogin(String currentLoginId) {
+		while(true) {
+			printScreen("CafeUserOptions");
+			int choice = inputSource.nextInt();
+			if(choice == 1)
+				Menu.addItem(currentLoginId);
+			else if(choice == 2)
+				Order.getOrders("Edit");
+			else if(choice == 3)
+				Order.printAllOrders("Delete", currentLoginId, 0);
+			else if(choice == 4)
+				Order.printAllOrders("ViewItems", currentLoginId, 0);
+			else break;
+		}
+		resetUserFlag();
+	}
+	
+	public static void normalUserLogin(String currentLoginId) {
+		while(true) {
+			printScreen("NormalUserOptions");
+			int choice = inputSource.nextInt();
+			if(choice == 1)
+				Menu.displayMenu("Items", currentLoginId);
+			else if(choice == 2)
+				Order.getOrders(currentLoginId);
+			else break;
+		}
+		resetUserFlag();
 	}
 	
 	public static void loginUser() {
 		String currentLoginId = LoginOptions.validateUserLogin();
 		while(true) {
-			printScreen("LoginOptions");
-			int choice = inputSource.nextInt();
-			if(choice == 1)
-				Menu.displayMenu(currentLoginId);
-			else if(choice == 2)
-				Order.getOrders(currentLoginId);
+			if(userFlag == 0)
+				normalUserLogin(currentLoginId);
+			else if(userFlag == 1)
+				cafeUserLogin(currentLoginId);
+			else if(userFlag == 2)
+				cafeteriaUserLogin(currentLoginId);
 			else break;
 		}
+		resetUserFlag();
+	}
+	
+	public static void regesterUser() {
+		LoginOptions.createNewUser();
 	}
 	
 	public static void main(String[] args) throws Exception{
@@ -50,7 +108,9 @@ public class DriverProgram {
 				regesterUser();
 			else if(choice == 2) 
 				loginUser();	
-			else break;
+			else 
+				break;
 		}
+		resetUserFlag();
 	}
 }

@@ -1,0 +1,6 @@
+1. Add Item
+2. Edit Item
+3. Delete Item
+4. View a Cafe 
+5. View All Orders Per Cafe
+6. View All Orders in All Cafe

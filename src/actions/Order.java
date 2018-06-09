@@ -27,4 +27,16 @@ public class Order {
 		JSONObject response = HttpConnections.sendRequestToServer("Order", parameters);
 		System.out.println(response.toString());
 	}
+		
+	public static void printAllOrders(String type, String loginId, int flag) {
+		Map<String, String>parameters = new HashMap<String, String>();
+		parameters.put("loginId", loginId);
+		if(flag == 1) {
+			System.out.println("CafeId: ");
+			int cafeId = IO.inputSource.nextInt();
+			parameters.put("cafeId", Integer.toString(cafeId));
+		}
+		JSONObject response = HttpConnections.sendRequestToServer(type, parameters);
+		System.out.println(response.toString());		
+	}
 }

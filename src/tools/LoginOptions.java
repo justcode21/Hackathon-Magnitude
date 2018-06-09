@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 
+import actions.DriverProgram;
 import user.User;
 
 public class LoginOptions {
@@ -34,7 +35,10 @@ public class LoginOptions {
 		parameters.put("password", password);
 		JSONObject response = HttpConnections.sendRequestToServer("Login", parameters);
 		if(response.get("loggedInStatus").equals("true"))
+		{
+			DriverProgram.userFlag = Integer.parseInt(response.get("value").toString());
 			return loginId;
+		}
 		return null;
 	}
 
