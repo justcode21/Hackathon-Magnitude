@@ -5,12 +5,14 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 import entities.Menu;
+import jdk.internal.org.xml.sax.InputSource;
 import tools.LoginOptions;
 
 public class DriverProgram {
 	
-	public static void printPhaseOptions(int phase) {
-		String documentToRead = "src/Phase" + Integer.toString(phase) + ".txt";
+	private static Scanner inputSource = new Scanner(System.in);
+	public static void printScreen(String fileName) {
+		String documentToRead = "src/" + fileName + ".txt";
 		try (BufferedReader br = new BufferedReader(new FileReader(documentToRead))) {
 			String line = null;
 			while ((line = br.readLine()) != null) {
@@ -22,26 +24,33 @@ public class DriverProgram {
 		}
 	}
 	
+	public static void regesterUser() {
+		LoginOptions.createNewUser();
+	}
+	
+	public static void loginUser() {
+		String currentLoginId = LoginOptions.validateUserLogin();
+		while(true) {
+			printScreen("LoginOptions");
+			int choice = inputSource.nextInt();
+			if(choice == 1)
+				Menu.displayMenu(currentLoginId);
+			else if(choice == 2)
+				Order.getOrders(currentLoginId);
+			else break;
+		}
+	}
+	
 	public static void main(String[] args) throws Exception{
 		
-		int currentPhase = 1, choice;
-		String currentLoginId = null;
-		Scanner inputSource = new Scanner(System.in);
 		while(true){
-			printPhaseOptions(currentPhase);
-			choice = inputSource.nextInt();
+			printScreen("Home");
+			int choice = inputSource.nextInt();
 			if(choice == 1)
-				LoginOptions.createNewUser();
-			else if(choice == 2) {
-				currentLoginId = LoginOptions.validateUserLogin();
-			}
-			else if(choice == 3) {
-				Menu.displayMenu(currentLoginId);
-			}
-			else if(choice == 4) {
-				Order.getOrders(currentLoginId);
-			}
-				
+				regesterUser();
+			else if(choice == 2) 
+				loginUser();	
+			else break;
 		}
 	}
 }

@@ -48,7 +48,7 @@ public class HttpConnections {
 			e.printStackTrace();
 		}
 		try {
-			System.out.println(response.toString());
+			//System.out.println(response.toString());
 			jsonResponse = (JSONObject) new JSONParser().parse(response.toString());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
