@@ -51,6 +51,7 @@ public class ViewItems extends HttpServlet {
 			ps.setString(1, cafeUserId);
 			ResultSet rs = ps.executeQuery();
 			JSONArray ja = new JSONArray();
+			int count = 0;
 			while(rs.next()) {
 				String cafeId = rs.getString(1);
 				ps2.setString(1, cafeId);
@@ -66,9 +67,11 @@ public class ViewItems extends HttpServlet {
 						jnew.put("ItemName", rs3.getObject(2));
 						jnew.put("ItemCost", rs3.getObject(3));
 						ja.add(jnew);
+						count++;
 					}
 				}
 			}
+			jo.put("count", count);
 			jo.put("values", ja);
 			out.println(jo);
 			out.flush();

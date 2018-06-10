@@ -48,6 +48,7 @@ public class ViewCafe extends HttpServlet {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, cafeteriaUser);
 			ResultSet rs = ps.executeQuery();
+			int count = 0;
 			while(rs.next()) {
 				String cafeId = rs.getString(1);
 				PreparedStatement ps2 = conn.prepareStatement(sql2);
@@ -58,8 +59,10 @@ public class ViewCafe extends HttpServlet {
 					jnew.put("cafeid", rs2.getInt(1));
 					jnew.put("cafename", rs2.getString(2));
 					ja.add(jnew);
+					count++;
 				}
 			}
+			jo.put("count", count);
 			jo.put("value", ja);
 			out.print(jo);
 		}catch(Exception e) {

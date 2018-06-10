@@ -133,7 +133,7 @@ public class Order extends HttpServlet {
 							ps.setString(6, "ordered pending");
 							ps.executeUpdate();
 							try {
-								processOrder(conn,generatedOrderID,itemIds[i]);
+								processOrder(conn,generatedOrderID,itemIds[i],UserId);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
@@ -242,7 +242,7 @@ public class Order extends HttpServlet {
 						ps.setString(6, "ordered pending");
 						ps.executeUpdate();
 						try {
-							processOrder(conn,generatedOrderID,itemIds[i]);
+							processOrder(conn,generatedOrderID,itemIds[i],UserId);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -271,7 +271,7 @@ public class Order extends HttpServlet {
 		}
 	}
 
-	private void processOrder(Connection conn,String generatedOrderID, String string) throws Exception{
+	private void processOrder(Connection conn,String generatedOrderID, String string,String userId) throws Exception{
 		
 		String sql = "select id from magnifood.order where itemid = ? and orderid = ?";
 		PreparedStatement ps = conn.prepareStatement(sql);
@@ -283,7 +283,7 @@ public class Order extends HttpServlet {
 			rowId = rs.getString(1);
 		}
 		System.out.println(rowId);
-		ProcessOrders process = new ProcessOrders(rowId);
+		ProcessOrders process = new ProcessOrders(userId,generatedOrderID,rowId);
 		process.start();
 		System.out.println("sent for update" + generatedOrderID);
 	}
