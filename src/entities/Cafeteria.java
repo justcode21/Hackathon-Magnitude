@@ -56,4 +56,22 @@ public class Cafeteria {
 		
 	}
 	
+	public static void addIngridient(String loginId) {
+		Map<String, String>parameters = new HashMap<String, String>();
+		
+		System.out.println("IngridientName: ");
+		String ingridientName = IO.inputSource.nextLine();
+		
+		System.out.println("IngridientQUantity: ");
+		String ingridientQuantity = IO.inputSource.nextLine();
+		
+		parameters.put("loginId", loginId);
+		parameters.put("ingredientName", ingridientName);
+		parameters.put("ingredientQuantity", ingridientQuantity);
+		
+		JSONObject response = HttpConnections.sendRequestToServer("AddIngredient", parameters);
+		System.out.println(response.toString());
+		
+	}
+	
 }
