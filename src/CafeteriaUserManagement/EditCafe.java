@@ -58,7 +58,10 @@ public class EditCafe extends HttpServlet {
 			System.out.println(ps.toString());
 			ps.executeUpdate();
 			
-			jo.put("value", "done");
+			if(dbCafeId == null)
+				jo.put("value", "false");
+			else
+				jo.put("value", "done");
 			out.println(jo);
 			out.flush();
 		}catch(Exception e) {

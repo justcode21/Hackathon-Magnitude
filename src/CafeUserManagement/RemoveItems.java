@@ -64,7 +64,10 @@ public class RemoveItems extends HttpServlet {
 			ps.executeUpdate();
 			
 			JSONObject jo = new JSONObject();
-			jo.put("value", "done");
+			if(dbItemId == null)
+				jo.put("value", "false");
+			else
+				jo.put("value", "done");
 			out.println(jo);
 			out.flush();
 		}catch(Exception e) {

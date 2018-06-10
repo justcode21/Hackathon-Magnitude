@@ -82,7 +82,11 @@ public class RemoveCafe extends HttpServlet {
 			}
 			
 			JSONObject jo = new JSONObject();
-			jo.put("value", "done");
+			
+			if(dbCafeId == null)
+				jo.put("value", "false");
+			else
+				jo.put("value", "done");
 			out.println(jo);
 			out.flush();
 		}catch(Exception e) {
