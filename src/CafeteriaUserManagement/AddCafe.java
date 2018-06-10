@@ -36,7 +36,7 @@ public class AddCafe extends HttpServlet {
 		String cafeName = request.getParameter("cafeName");
 		String cafeUserName = request.getParameter("cafeUserName");
 		
-		String sql = "select loginId from magnifood.user where username = ?";
+		String sql = "select cafeteriauser from magnifood.cafe where cafeteriauser = ?";
 		String sql2 = "insert into magnifood.cafe(cafename,cafeuserid,cafeteriauser) values(?,?,?)";
 		
 		JSONObject jo = new JSONObject();
