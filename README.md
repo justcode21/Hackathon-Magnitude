@@ -1,5 +1,5 @@
-## Hackathon Magnitude
-This project is build as part of a 24 hour hackathon at Magnitude Software, it is build in three phases
+## Hackathon - Magnitude Software
+This project is build as part of a 24 hour hackathon at Magnitude Software, it is build in 4 phases
 
 #### Problem Statement:
 MagniFood - Magnitude Software has volunteered to "IT-Enable" the RGA Tech Park Food COurt Operations.
